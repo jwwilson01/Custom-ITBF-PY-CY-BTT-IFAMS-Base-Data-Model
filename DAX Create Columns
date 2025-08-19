@@ -1,0 +1,3 @@
+SPI Link = "https://btt.dva.va.gov/ppsServlet/spring/spi/viewSPI?SPIID=" & DIM_SPI[SPI_ID]
+
+IPR Num = LEFT(FACT_IFAMS_COMMITTED[DOC_ID],18)
