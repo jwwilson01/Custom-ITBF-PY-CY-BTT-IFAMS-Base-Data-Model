@@ -1,0 +1,6 @@
+let
+    Source = Sql.Database(Server, Database, [Query="select *#(lf)from APP.BTT_DIM_SPI_STRIP"]),
+    #"Merged Queries" = Table.NestedJoin(Source, {"STRIP_ID"}, REF_SPI_STRIP_DETAILS, {"SPI Strip ID"}, "REF_SPI_STRIP_DETAILS", JoinKind.LeftOuter),
+    #"Expanded REF_SPI_STRIP_DETAILS" = Table.ExpandTableColumn(#"Merged Queries", "REF_SPI_STRIP_DETAILS", {"Strip Status Comment - Latest", "Type Summary"}, {"Strip Status Comment - Latest", "Type Summary"})
+in
+    #"Expanded REF_SPI_STRIP_DETAILS"
