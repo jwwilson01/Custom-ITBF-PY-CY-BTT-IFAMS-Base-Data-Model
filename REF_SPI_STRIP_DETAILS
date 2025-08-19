@@ -1,0 +1,17 @@
+DECLARE @CurrentFY int;
+DECLARE @PriorFY int;
+DECLARE @NextFY int;
+
+SET @CurrentFY = (SELECT
+  CASE
+    WHEN MONTH(GETDATE()) < 10 THEN YEAR(GETDATE())
+    ELSE YEAR(GETDATE()) + 1
+  END)
+SET @PriorFY = @CurrentFY - 1
+SET @NextFY = @CurrentFY + 1
+SELECT 
+	[SPI Strip ID],
+	[Strip Status Comment - Latest],
+	[Type Summary]
+FROM [ITRM_ITBF].[App].[BTT_SPI_STRIP_LEVEL]
+WHERE (FY = @CurrentFY OR FY = @NextFY OR FY = @PriorFY) AND Snapshot = 1
