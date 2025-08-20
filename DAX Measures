@@ -1,3 +1,6 @@
+*** These are the Custom DAX Measures used in the data model ***
+
+
 Problem Char in SPI-Strip = IF(CONTAINSSTRING(SELECTEDVALUE(Query1[Planned Contract Title]), "~?") || CONTAINSSTRING(SELECTEDVALUE(Query1[Planned Contract Title]), """") || CONTAINSSTRING(SELECTEDVALUE(Query1[Description2]), "~?")|| CONTAINSSTRING(SELECTEDVALUE(Query1[Description2]), """") || CONTAINSSTRING(SELECTEDVALUE(Query1[JUSTIFICATION]), "~?")|| CONTAINSSTRING(SELECTEDVALUE(Query1[JUSTIFICATION]), """")|| CONTAINSSTRING(SELECTEDVALUE(Query1[OUTCOME]), "~?")|| CONTAINSSTRING(SELECTEDVALUE(Query1[OUTCOME]), """")|| ISBLANK(SELECTEDVALUE(Query1[Planned Contract Title]))|| ISBLANK(SELECTEDVALUE(Query1[Description2])) || ISBLANK(SELECTEDVALUE(Query1[JUSTIFICATION])) || ISBLANK(SELECTEDVALUE(Query1[OUTCOME])), 1, 0)
 
 Duplicate Desc-Just-outcome = IF(NOT (ISBLANK(SELECTEDVALUE(Query1[Justification])) || SELECTEDVALUE(Query1[Justification]) = ""), IF( SELECTEDVALUE(Query1[Justification]) = SELECTEDVALUE(DIM_SPI[Description2]) || SELECTEDVALUE(Query1[Justification]) = SELECTEDVALUE(Query1[Outcome]), 1, 0), 0)
